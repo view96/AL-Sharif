@@ -1153,6 +1153,9 @@ button {
   position: relative;
   padding: 24px 0 10px;
   direction: ltr;
+  display: flex;
+  gap: 24px;
+  user-select: none;
 }
 
 .partners-marquee-container::before,
@@ -1180,9 +1183,11 @@ button {
   display: flex;
   align-items: center;
   gap: 24px;
+  flex-shrink: 0;
   width: max-content;
   animation: partnersScroll 40s linear infinite;
   padding: 8px 0;
+  will-change: transform;
 }
 
 .partners-marquee-container:hover .partners-track {
@@ -1190,11 +1195,11 @@ button {
 }
 
 @keyframes partnersScroll {
-  0% {
+  from {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(50%);
+  to {
+    transform: translateX(calc(-100% - 24px));
   }
 }
 
@@ -1215,6 +1220,7 @@ button {
   position: relative;
   overflow: hidden;
   text-align: center;
+  direction: rtl;
 }
 
 .partner-card::before {
