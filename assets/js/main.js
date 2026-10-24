@@ -4,7 +4,7 @@
  * Native JS - Professional Industrial Website
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
   initNavbarScroll();
   initMobileDrawer();
   initHeroSlider();
@@ -15,7 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initHomeProductCards();
   initBarrierGallery();
   initContactForm();
-});
+  initScrollToTop();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
 
 /* ==========================================================================
    1. Navbar Scroll Effect
@@ -527,6 +534,126 @@ const productsData = {
     material: 'بولي إيثيلين عالي الكثافة معزز لمقاومة الصدمات وارتطام المركبات',
     coating: 'عاكسات فوسفورية معتمدة لمطابقة معايير السلامة المرورية',
     usage: 'المناطق الأمنية، محيط المنشآت، مصانع ومستودعات، مواقف'
+  },
+  'booth-1': {
+    title: 'كشك شواطئ فيبر جلاس دائري مفتوح (برج إنقاذ ومراقبة)',
+    badge: 'أكشاك شواطئ',
+    cap: 'دائري مفتوح قطر 105 سم',
+    img: 'assets/images/guard-booth-1.webp',
+    desc: 'كشك دائري انسيابي مفتوح بقبة زرقاء مصمم خصيصاً للشواطئ والمنتجعات والمسابح ونقاط الإنقاذ، مزود بمقعد داخلي مدمج ومقاوم تماماً للأملاح والرطوبة وأشعة الشمس.',
+    warranty: '5 سنوات ضمان مصنع',
+    dims: 'القطر: 105 سم | الارتفاع: 220 سم',
+    material: 'فيبر جلاس مسلح بالبوليستر النقي المعالج ضد الأملاح وعوامل التعرية',
+    coating: 'جل كوت بحري عالي النقاء مقاوم للأشعة فوق البنفسجية UV والمياه المالحة',
+    usage: 'الشواطئ، المسابح والنوادي، أبراج ونقاط الإنقاذ، القرى السياحية'
+  },
+  'booth-2': {
+    title: 'كشك حراسة فيبر جلاس مربع 105 × 105 سم (أورانج)',
+    badge: 'الأكثر طلباً',
+    cap: 'مربع 105 × 105 سم',
+    img: 'assets/images/guard-booth-2.webp',
+    desc: 'المقاس الاقتصادي الأكثر طلباً للبوابات والمصانع ومواقف السيارات، مجهز بباب وشباك ألوميتال برتقالي وزجاج، وسقف وقاعدة برتقالية مع عزل حراري كامل.',
+    warranty: '5 سنوات ضمان مصنع',
+    dims: 'الأبعاد: 105 × 105 سم | الارتفاع: 225 سم',
+    material: 'فيبر جلاس فائق الصلابة مدعم بهيكل أمان وعزل فوم بولي يوريثان',
+    coating: 'تشطيب برتقالي وأبيض ثابت الألوان ضد أشعة الشمس وعوامل الطقس',
+    usage: 'المصانع، المدارس، البنوك، مواقف السيارات، بوابات الشركات'
+  },
+  'booth-3': {
+    title: 'كشك حراسة فيبر جلاس دائري كلاسيك قطر 105 سم',
+    badge: 'دائري كلاسيك',
+    cap: 'قطر 105 سم بيج',
+    img: 'assets/images/guard-booth-3.webp',
+    desc: 'كشك حراسة أسطواني الشكل بلون بيج راقٍ يعطي طابعاً معمارياً متميزاً، مزود بباب نصف دائري محكم الإغلاق ونوافذ ألوميتال جانبية.',
+    warranty: '5 سنوات ضمان مصنع',
+    dims: 'القطر: 105 سم | الارتفاع: 230 سم',
+    material: 'ألياف زجاجية مقواة (GRP) متعددة الطبقات مع عزل حراري فائق',
+    coating: 'جل كوت بيج فاخر مقاوم للخدش والأتربة وتقلبات درجات الحرارة',
+    usage: 'الكمبوندات، واجهات القصور والفلل، المجمعات السكنية والإدارية'
+  },
+  'booth-4': {
+    title: 'كشك حراسة فيبر جلاس سقف قرميد 150 × 150 سم',
+    badge: 'بوابات ومشاريع',
+    cap: 'مربع 150 × 150 سم',
+    img: 'assets/images/guard-booth-4.webp',
+    desc: 'كشك حراسة بمساحة رحبة تتسع لفردين ومكتب وأجهزة كمبيوتر ومراقبة، مصمم بسقف قرميدي هرمي فخم يعزل مياه الأمطار والحرارة الشديدة.',
+    warranty: '5 سنوات ضمان مصنع',
+    dims: 'الأبعاد: 150 × 150 سم | الارتفاع: 240 سم',
+    material: 'فيبر جلاس عالي الكثافة مع سقف قرميدي مضلع وعزل بولي يوريثان',
+    coating: 'مقاومة تامة لعوامل التعرية الجوية، غير قابل للصدأ أو التأكل',
+    usage: 'بوابات المشروعات الكبرى، الموانئ، المعارض، بوابات التفتيش الأمني'
+  },
+  'booth-5': {
+    title: 'كشك حراسة فيبر جلاس سقف قرميد 120 × 120 سم (أخضر)',
+    badge: 'طراز حدائق ونوادي',
+    cap: 'مربع 120 × 120 سم',
+    img: 'assets/images/guard-booth-5.webp',
+    desc: 'كشك حراسة أنيق باللونين الأبيض والأخضر يتناسق مع الحدائق والنوادي والمزارع، مجهز بسقف قرميد أخضر، باب وشباك ألوميتال أخضر، ومخارج كهرباء خارجية.',
+    warranty: '5 سنوات ضمان مصنع',
+    dims: 'الأبعاد: 120 × 120 سم | الارتفاع: 235 سم',
+    material: 'فيبر جلاس مسلح بأعمدة زوايا خضراء معززة وسقف عازل للمطر والحرارة',
+    coating: 'دهان جل كوت أخضر وأبيض مقاوم للبهتان والأشعة فوق البنفسجية',
+    usage: 'النوادي الرياضية، الحدائق، المزارع، الكمبوندات الخضراء، المدارس'
+  },
+  'booth-6': {
+    title: 'كشك حمام متنقل فيبر جلاس W.C (دورة مياه متنقلة جاهزة)',
+    badge: 'صحي متنقل W.C',
+    cap: '100 × 100 سم W.C',
+    img: 'assets/images/guard-booth-6.webp',
+    desc: 'كابينة دورة مياه متنقلة جاهزة ومجهزة بالكامل للاستخدام الفوري في مواقع الإنشاءات والمشاريع والفعاليات والمزارع، مزودة بأرضية مانعة للانزلاق وتجهيزات سباكة كاملة.',
+    warranty: '5 سنوات ضمان مصنع',
+    dims: 'الأبعاد: 100 × 100 سم | الارتفاع: 230 سم',
+    material: 'فيبر جلاس صحي مضاد للبكتيريا ومقاوم للمياه والمطهرات الكيميائية',
+    coating: 'أرضية فيبر مقاومة للانزلاق، شباك تهوية علوي، وتجهيزات سباكة جاهزة',
+    usage: 'مواقع المقاولات والإنشاءات، المزارع، الفعاليات المفتوحة، الحقول النفطية'
+  },
+  'booth-7': {
+    title: 'كشك حراسة أمني فردي سقف مائل 105 × 105 سم (أزرق)',
+    badge: 'أمني فردي',
+    cap: '105 × 105 سم أزرق',
+    img: 'assets/images/guard-booth-7.webp',
+    desc: 'كشك حراسة فردي مدمج بتصميم أمني قوي ونقش هندسي جانبي X، مجهز بسقف مائل لتصريف مياه الأمطار وباب ألوميتال أزرق وشباك مراقبة.',
+    warranty: '5 سنوات ضمان مصنع',
+    dims: 'الأبعاد: 105 × 105 سم | الارتفاع: 230 سم',
+    material: 'فيبر جلاس مقوى بجوانب مدعمة ومقاومة للاصطدام والعوامل الجوية',
+    coating: 'طبقة حماية ضد التآكل والحرارة وألوان زرقاء وبيضاء ثابتة',
+    usage: 'الحواجز المرورية والأمنية، البوابات الفرعية، كبائن تحصيل الرسوم'
+  },
+  'booth-8': {
+    title: 'كشك حراسة مشطوف الزوايا سقف هرمي 120 × 120 سم',
+    badge: 'مشطوف الزوايا VIP',
+    cap: '120 × 120 سم مثمن',
+    img: 'assets/images/guard-booth-8.webp',
+    desc: 'تصميم هندسي متقدم بأركان مشطوفة يمنح الكشك متانة إضافية ومجال رؤية أوسع للحارس، مع سقف هرمي متعدد الأوجه ومظهر ديكوري فخم.',
+    warranty: '5 سنوات ضمان مصنع',
+    dims: 'الأبعاد: 120 × 120 سم | الارتفاع: 240 سم',
+    material: 'فيبر جلاس مسلح بزوايا مشطوفة معززة وعزل حراري كامل',
+    coating: 'جل كوت غير قابل للاشتعال ومقاوم للأتربة وعوامل الطقس المتغيرة',
+    usage: 'الكمبوندات الفاخرة، المصانع، مقار الشركات، المراكز الطبية'
+  },
+  'booth-9': {
+    title: 'كشك حراسة وإدارة بوابات مستطيل 150 × 200 سم (سقف قرميد)',
+    badge: 'سعة كبرى',
+    cap: 'مستطيل 150 × 200 سم',
+    img: 'assets/images/guard-booth-9.webp',
+    desc: 'كابينة أمنية وإدارية فسيحة تصلح لغرف المراقبة والتحكم، بوابات الشركات، ونقاط تفتيش المزارع والمصانع، تتسع لطاقم عمل ومعدات تقنية.',
+    warranty: '5 سنوات ضمان مصنع',
+    dims: 'الأبعاد: 150 × 200 سم | الارتفاع: 240 سم',
+    material: 'فيبر جلاس عالي الكثافة مع سقف قرميدي مائل وعوازل حرارية وصوتية',
+    coating: 'مقاومة كيميائية وجوية شاملة وتشطيب بيج فاخر سهل التنظيف',
+    usage: 'غرف تحكم المراقبة، بوابات وزن الشاحنات، المستودعات، المشروعات الكبرى'
+  },
+  'booth-10': {
+    title: 'كشك حراسة فيبر جلاس دائري بانورامي قطر 120 سم',
+    badge: 'دائري بانورامي',
+    cap: 'قطر 120 سم كلاسيك',
+    img: 'assets/images/guard-booth-10.webp',
+    desc: 'الكشك الدائري الأكثر رواجاً للفنادق والمجمعات السكنية الفاخرة، يجمع بين القبة الزرقاء الكلاسيكية والباب المقوس مع شباك زجاجي منزلق عريض.',
+    warranty: '5 سنوات ضمان مصنع',
+    dims: 'القطر: 120 سم | الارتفاع: 235 سم',
+    material: 'هيكل أسطواني من الفيبر جلاس النقي مع عزل حراري وزجاج سيكوريت',
+    coating: 'ألوان ثابتة ضد الأشعة فوق البنفسجية UV ومقاومة للصدمات والصدأ',
+    usage: 'الفنادق، المنتجعات، المجمعات الإدارية، واجهات المولات والكمبوند'
   }
 };
 
@@ -642,7 +769,7 @@ function initQuoteModal() {
 - موقع التوريد: ${location}
 - تفاصيل إضافية: ${notes}`;
 
-      const whatsappNumber = '201043807184';
+      const whatsappNumber = '201019132698';
       const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
       window.open(url, '_blank');
@@ -699,7 +826,7 @@ function initSpecsModal() {
 
     if (directWaLink) {
       const msg = encodeURIComponent(`السلام عليكم، أرغب في طلب: ${data.title} من شركة الشريف`);
-      directWaLink.href = `https://wa.me/201043807184?text=${msg}`;
+      directWaLink.href = `https://wa.me/201019132698?text=${msg}`;
     }
 
     specsModal.classList.add('is-active');
@@ -777,6 +904,7 @@ function initProductFilter() {
       if (categoryValue === 'vertical') targetCard = document.getElementById('first-product-vertical');
       else if (categoryValue === 'horizontal') targetCard = document.getElementById('first-product-horizontal');
       else if (categoryValue === 'barriers') targetCard = document.getElementById('first-product-barriers');
+      else if (categoryValue === 'booths') targetCard = document.getElementById('first-product-booths');
 
       if (!targetCard) {
         targetCard = Array.from(productCards).find(card => card.getAttribute('data-category') === categoryValue && card.style.display !== 'none');
@@ -822,10 +950,10 @@ function initProductFilter() {
     });
   });
 
-  // Check URL hash on page load or on hashchange (e.g. #vertical, #horizontal, #barriers)
+  // Check URL hash on page load or on hashchange (e.g. #vertical, #horizontal, #barriers, #booths)
   const handleHashFilter = (isInitial = false) => {
     const hash = window.location.hash.replace('#', '').toLowerCase();
-    const validFilters = ['vertical', 'horizontal', 'barriers', 'all'];
+    const validFilters = ['vertical', 'horizontal', 'barriers', 'booths', 'all'];
     if (hash && validFilters.includes(hash)) {
       const matchingBtn = document.querySelector(`.filter-btn[data-filter="${hash}"]`);
       if (matchingBtn) {
@@ -853,7 +981,7 @@ function initProductFilter() {
   }
 
   // Intercept category links (e.g. in the footer) when already on the products page
-  document.querySelectorAll('a[href*="#vertical"], a[href*="#horizontal"], a[href*="#barriers"]').forEach(link => {
+  document.querySelectorAll('a[href*="#vertical"], a[href*="#horizontal"], a[href*="#barriers"], a[href*="#booths"]').forEach(link => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
       const hashIndex = href ? href.indexOf('#') : -1;
@@ -909,7 +1037,7 @@ function initContactForm() {
 - الموضوع: ${subject}
 - نص الرسالة: ${messageText}`;
 
-    const whatsappNumber = '201043807184';
+    const whatsappNumber = '201019132698';
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
     window.open(url, '_blank');
@@ -943,3 +1071,32 @@ function initBarrierGallery() {
     });
   });
 }
+
+/* ==========================================================================
+   9. Scroll To Top Floating Button (زر الصعود لأعلى الصفحة)
+   ========================================================================== */
+function initScrollToTop() {
+  const scrollBtn = document.getElementById('scrollTopBtn');
+  if (!scrollBtn) return;
+
+  const toggleScrollBtn = () => {
+    const scrollPos = window.scrollY || document.documentElement.scrollTop || 0;
+    if (scrollPos > 250) {
+      scrollBtn.classList.add('is-visible');
+    } else {
+      scrollBtn.classList.remove('is-visible');
+    }
+  };
+
+  window.addEventListener('scroll', toggleScrollBtn, { passive: true });
+  toggleScrollBtn();
+
+  scrollBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
